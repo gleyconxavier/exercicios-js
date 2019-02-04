@@ -11,6 +11,27 @@
             p + ol vai bucar p adjacente a um ol
             p ~ ol general simblings mesmo pai.
             [feira] seletor de propriedade( no caso personalizada ) html.
+            [feira=casa] possivel associar a propriedade e seu determinado valor. 
+            porém neste caso busca um valor exatamente igual caso seja algo como 
+            "valor1 valor2" ou seja duas classes, não retorna. 
+            [feira~=escritorio] age como o exemplo acima, porém busca um valor igual,
+            mesmo que exista diversos outros valores/classes html.
+            [feira*=sa] dentro dos valores/classes pertencentes a  propriedade
+            se existe valor possuindo os caracteres no caso "sa".
+            span:nth-child(1) 
+            LEMBRETE: (existe um label no JS, está como primeiro filho deve-se desabilitar com "nolabel") 
+            procurou em todas as tags me de um span que seja filho de alguém
+            ou seja busca em todas as tags, uma tag pai com primeiro filho "span".
+            section > :nth-child(odd) busca dentro da tag pai os filhos, sejam "odd"(impares) ou "even"(pares).
+            variações
+            section > :nth-child(odd), ul
+            section > :nth-child(odd), ul, p
+            section > :nth-child(odd) label
+            section > span:nth-of-type(2) me de o segundo elemento dentro da section do tipo span.
+
+            Sempre selecione pelo caminho mais simples.
+
+         
          */
          {
             color: #ff0;
