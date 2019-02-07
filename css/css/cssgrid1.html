@@ -6,6 +6,8 @@
     <title>CSS Grid #01</title>
     <style>
         /* https://caniuse.com/#feat=css-grid */
+
+        /* flexbox trabalha com uma dimensão o grid trabalha com duas */
         
         html,
         body {
@@ -21,6 +23,42 @@
             font-size: 30px;
             border: solid 5px dodgerblue;
             background: #fff;
+        }
+
+        body {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-columns: repeat(4, 8.33% 8.33% 8.33%); /* irá repetir 4 vezes, gerando 3 colunas de 4 * 8.33% ou 12 vezes. */
+            grid-template-columns: repeat(4, 8.33%); /* Neste caso terá 4 colunas de 8.33%, não ocupará 100% do espaço. */
+            grid-template-columns: repeat(11, 100px) 100px; /* neste caso o repeat será para 11 das doze, e uma foi setada fora */
+            /* minmax(100px, 300px) */
+            grid-template-columns: 200px 20% 1fr; /* setando 3 colunas, a primeira com 200px a segunda com 20% e a terceira com 1fr ou seja um fragmento. */
+            grid-template-columns: 3fr 6fr 3fr; /* gerando 3 colunas baseando em 12 fragmentos */
+            grid-template-rows: 50% 25% 12.5% 12.5%; /* setando linhas primeira com 50% segunda com 25% e assim em diante*/
+            grid-template-rows: 100px 1fr; /* setando primeira e segunda, as demais se adequam ao espaço livre. */
+            grid-template-rows: 100px auto auto auto; /* setando a primeira deixando as demais em automatico. */
+        }
+
+        .d8 {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            grid-column-end: span 2;
+            grid-row-start: 3;
+            grid-row-end: 5;
+            grid-row-end: span 2;
+        }
+
+        .d10,
+        .d11 {
+            /* Podem se sobrepor */
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 5;
+            grid-row-end: span 1;
+        }
+
+        .d10 {
+            z-index: 10;
         }
     </style>
 </head>
