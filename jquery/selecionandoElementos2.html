@@ -97,6 +97,11 @@
         $('body').find('a').css(comBorda).css(semBorda)
 
         const elementoDOM = document.getElementsByClassName('menu')
-        $(elementoDOM)
+        $(elementoDOM).css(comBorda)
+
+        $('main').children().each((i, e) => $(e).css(comBorda).css(semBorda))
+        $('li').each((i, e) => {
+            $(e).css(comBorda).css(semBorda)
+        })
     </script>
 </body>
