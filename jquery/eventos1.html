@@ -31,7 +31,12 @@
         })
 
         $('#posicao').mouseleave(e => {
-            $('body').on('mousemove', mostrarPosicaoMouse)
+            $('body').mousemove(mostrarPosicaoMouse)
+        })
+
+        let cliques = 0
+        $('body').click( e=> {
+            $('#cliques').html(`Cliques: ${++cliques}`)
         })
     </script>
 </body>
