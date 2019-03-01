@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import Main from '../template/Main'
 
 const headerProps = {
@@ -9,7 +10,7 @@ const headerProps = {
 
 const baseUrl = 'http://localhost:3001/users'
 const initialState = {
-    user: { name: '', email: ''},
+    user: { name: '', email: '' },
     list: []
 }
 
@@ -18,7 +19,7 @@ export default class UserCrud extends Component {
     state = { ...initialState }
 
     componentWillMount() {
-        axios(baseurl).then(resp => {
+        axios(baseUrl).then(resp => {
             this.setState({ list: resp.data })
         })
     }
@@ -38,9 +39,9 @@ export default class UserCrud extends Component {
             })
     }
 
-    getUpdatedList(user) {
+    getUpdatedList(user, add = true) {
         const list = this.state.list.filter(u => u.id !== user.id)
-        if(user) list.unshift(user)
+        if(add) list.unshift(user)
         return list
     }
 
@@ -64,6 +65,7 @@ export default class UserCrud extends Component {
                                 placeholder="Digite o nome..." />
                         </div>
                     </div>
+
                     <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label>E-mail</label>
@@ -100,7 +102,7 @@ export default class UserCrud extends Component {
 
     remove(user) {
         axios.delete(`${baseUrl}/${user.id}`).then(resp => {
-            const list = this.getUpdatedList(user,)
+            const list = this.getUpdatedList(user, false)
             this.setState({ list })
         })
     }
@@ -110,6 +112,7 @@ export default class UserCrud extends Component {
             <table className="table mt-4">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nome</th>
                         <th>E-mail</th>
                         <th>Ações</th>
@@ -126,6 +129,7 @@ export default class UserCrud extends Component {
         return this.state.list.map(user => {
             return (
                 <tr key={user.id}>
+                    <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>
@@ -142,12 +146,12 @@ export default class UserCrud extends Component {
             )
         })
     }
-
-    render () {
+    
+    render() {
         return (
             <Main {...headerProps}>
                 {this.renderForm()}
-                {this.renderTable()} 
+                {this.renderTable()}
             </Main>
         )
     }
